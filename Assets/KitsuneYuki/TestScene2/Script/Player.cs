@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     void Update(){
         float mouseX = Input.GetAxisRaw("Mouse X");
         transform.position += Vector3.right * mouseX * sensitivity;
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x , -4f , 4f) , transform.position.y , transform.position.z);
         if(mouseX >= 0.2f){
             print("扣餐點血");
         }
