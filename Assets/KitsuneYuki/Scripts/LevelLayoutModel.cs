@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class LevelLayoutModel
 {
-    List<roadId> roadLayout = new List<roadId>();
-    int levelLength = 30;
-    public void GenerateLevelLayout(){
+    private int levelLength = 30;
+    private int range;
+    public List<roadId> GenerateLevelLayout(){
+        List<roadId> roadLayout = new List<roadId>();
         for(int i = 0; i < levelLength; i++){
-            int range = Random.Range(0 , (int)roadId._234);
+            range = Random.Range(0 , (int)roadId._234);
             roadId r = (roadId)range;
             roadLayout.Add(r);
         }
+        return roadLayout;
     }
 }
 public enum roadId{
