@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class CarSpawner : MonoBehaviour
 {
+    public event Action GameFinishEvent;
     public bool reverse = false;
     public bool hardmode = false;
     [SerializeField] private List<Transform> carSpawnPoints = new List<Transform>();
     [SerializeField] List<CarView> cars = new List<CarView>();
+    [SerializeField] private CheckPoint checkPoint;
     private List<CarView> carsOnRoad = new List<CarView>();
-    private int levelLength = 30;
-    private int range;
+    private int levelLength = 30 , carPassCount = 0;
     private float carDistance = 10f;
     private void Awake() {
+        checkPoint.CarPassEvent += (rev) => {
+            if(rev){
+                carPassCount--;
+            }
+            else{
+                carPassCount++;
+            }
+            print(carPassCount);
+            if(carPassCount == carsOnRoad.Count){
+                print("完成一單");
+                GameFinishEvent();
+            }
+        };
         Init();
     }
     private void FixedUpdate() {
@@ -21,6 +36,7 @@ public class CarSpawner : MonoBehaviour
         }
     }
     public void Init(){
+        carPassCount = 0;
         List<RoadId> map = GenerateLevelLayout();
         PlaceCars(map);
     }
@@ -32,8 +48,9 @@ public class CarSpawner : MonoBehaviour
     }
     private List<RoadId> GenerateLevelLayout(){
         List<RoadId> roadLayout = new List<RoadId>();
+        int range;
         for(int i = 0; i < levelLength; i++){
-            range = Random.Range(0 , (int)RoadId._234);
+            range = UnityEngine.Random.Range(0 , (int)RoadId._234);
             RoadId r = (RoadId)range;
             roadLayout.Add(r);
         }
@@ -104,11 +121,11 @@ public class CarSpawner : MonoBehaviour
         }
     }
     private void SpawnCarAt(int roadNum , float zTransform){
-        CarView carView = cars[Random.Range(0 , cars.Count)];
+        CarView carView = cars[UnityEngine.Random.Range(0 , cars.Count)];
         carView = Instantiate(carView , carSpawnPoints[roadNum].position + new Vector3(0 , 0 , zTransform) , Quaternion.identity);
         float speed;
         if(hardmode){
-            speed = Random.Range(10f , 20f);
+            speed = UnityEngine.Random.Range(10f , 20f);
         }
         else{
             speed = 15f;
