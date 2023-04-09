@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public bool active = true;
     public float loseFoodThreshold = 0.5f;
     private float sensitivity = 0.1f , border = 4f;
+    public GameObject gg;
     void Update(){
         if(!active) return;
         float mouseX = Input.GetAxisRaw("Mouse X");
@@ -20,8 +21,12 @@ public class Player : MonoBehaviour
         }
         if(Input.GetKey(KeyCode.Mouse0)){
             print("時光倒流");
+
+            gg.SetActive(true);
             ReverseTime();
+
         }
+        gg.SetActive(false);
     }
     private void OnTriggerEnter(Collider other) {
         print("扣血");
