@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 329416303986127273}
   - component: {fileID: 1406403111680336801}
   - component: {fileID: 3216335219014272531}
+  - component: {fileID: 8663543658845204294}
   m_Layer: 0
   m_Name: Car_Poly01
   m_TagString: Untagged
@@ -64,6 +65,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!65 &8663543658845204294
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2496382465177861385}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.25, y: 0.5, z: 2.2}
+  m_Center: {x: 0, y: 0, z: 0.23}
 --- !u!1001 &7784621789766710266
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -136,6 +150,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6409650, guid: 9c91ecea7f7dce04facaeb11c977e102, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6459530, guid: 9c91ecea7f7dce04facaeb11c977e102, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
