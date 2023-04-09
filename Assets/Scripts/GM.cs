@@ -22,6 +22,7 @@ public class GM : MonoBehaviour
     [SerializeField] private HealthBar healthBar, foodHealthBar;
     [SerializeField] private GameObject FinalUI;
     [SerializeField] private List<AudioClip> Sountracks =new List<AudioClip>();
+    [SerializeField] private Image TimeBar;
 
     // Start is called before the first frame update
     void Start()
@@ -69,6 +70,7 @@ public class GM : MonoBehaviour
         Roadbehavior.stop = true;
         healthBar.gameObject.SetActive(false);
         foodHealthBar.gameObject.SetActive(false);
+        TimeBar.gameObject.SetActive(false);
         FinalUI.SetActive(true);
         int paymoney;
         if (PlayerHP == 0)
@@ -140,6 +142,7 @@ public class GM : MonoBehaviour
             return;
         }
         ReverseTimer -= Time.fixedDeltaTime;
+        TimeBar.fillAmount = ReverseTimer / 10.0f;
         if(!this.GetComponent<AudioSource>().isPlaying)
         {
             this.GetComponent<AudioSource>().Play();
@@ -156,7 +159,8 @@ public class GM : MonoBehaviour
         }
         if (ReverseTimer < 10)
         {
-            ReverseTimer+= (Time.fixedDeltaTime)/2;
+            ReverseTimer+= (Time.fixedDeltaTime);
+            TimeBar.fillAmount = ReverseTimer / 10.0f;
         }
         Carspawnser.reverse = false;
         Roadbehavior.reverse = false;
@@ -186,6 +190,7 @@ public class GM : MonoBehaviour
         ReverseTimer = 10;
         healthBar.gameObject.SetActive(true);
         foodHealthBar.gameObject.SetActive(true);
+        TimeBar.gameObject.SetActive(true);
         FinalUI.SetActive(false);
     }
 }
