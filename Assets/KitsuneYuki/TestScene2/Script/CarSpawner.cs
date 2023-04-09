@@ -22,9 +22,8 @@ public class CarSpawner : MonoBehaviour
             else{
                 carPassCount++;
             }
-            print(carPassCount);
             if(carPassCount == carsOnRoad.Count){
-                print("完成一單");
+                //完成一單
                 GameFinishEvent();
             }
         };

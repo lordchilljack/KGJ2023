@@ -5,7 +5,7 @@ using System;
 
 public class Player : MonoBehaviour
 {
-    public event Action LoseBlood , LoseFood , ReverseTime;
+    public event Action LoseBlood , LoseFood , ReverseTime , NormalTime;
     public bool active = true;
     public float loseFoodThreshold = 0.5f;
     private float sensitivity = 0.1f , border = 4f;
@@ -15,17 +15,19 @@ public class Player : MonoBehaviour
         transform.position += Vector3.right * mouseX * sensitivity;
         transform.position = new Vector3(Mathf.Clamp(transform.position.x , -border , border) , transform.position.y , transform.position.z);
         if(Mathf.Abs(mouseX) >= loseFoodThreshold){
-            print("扣餐點血");
+            //餐點扣血
             LoseFood();
         }
         if(Input.GetKey(KeyCode.Mouse0)){
-            print("時光倒流");
+            //時光倒流
             ReverseTime();
+        }
+        else if(Input.GetKeyUp(KeyCode.Mouse0)){
+            NormalTime();
         }
     }
     private void OnTriggerEnter(Collider other) {
-        print("扣血");
-        print("扣餐點血");
+        //扣血+扣食物
         LoseBlood();
         LoseFood();
     }
