@@ -8,6 +8,7 @@ public class TitleCtrl : MonoBehaviour
 {
     private List<string> _keyStrokeHistory;
     public GameObject HiddenButton;
+    public GameObject HelpMenu;
     public int ChozenSeed;
 
     void Awake()
@@ -18,34 +19,18 @@ public class TitleCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ChozenSeed = UnityEngine.Random.Range(0, 5);
-        switch (ChozenSeed)
-        {
-            case 0:
-                this.GetComponent<Image>().sprite = Resources.Load<Sprite>("title0");
-                break;
-            case 1:
-                this.GetComponent<Image>().sprite = Resources.Load<Sprite>("title1");
-                break;
-            case 2:
-                this.GetComponent<Image>().sprite = Resources.Load<Sprite>("title2");
-                break;
-            case 3:
-                this.GetComponent<Image>().sprite = Resources.Load<Sprite>("title3");
-                break;
-            case 4:
-                this.GetComponent<Image>().sprite = Resources.Load<Sprite>("title4");
-                break;
-
-        }
-        
+        RandBG();
     }
 
     // Update is called once per frame
     void Update()
     {
         KeyCode keyPressed = DetectKeyPressed();
-        AddKeyStrokeToHistory(keyPressed.ToString());
+        if (keyPressed == KeyCode.R)
+        {
+            RandBG();
+        }
+            AddKeyStrokeToHistory(keyPressed.ToString());
         
         if (GetKeyStrokeHistory().Equals("UpArrow,UpArrow,DownArrow,DownArrow,LeftArrow,RightArrow,LeftArrow,RightArrow,B,A"))
         {
@@ -87,5 +72,33 @@ public class TitleCtrl : MonoBehaviour
     {
         _keyStrokeHistory.Clear();
     }
+    public void CallHelp()
+    {
+        if(!HelpMenu.gameObject.activeSelf) HelpMenu.gameObject.SetActive(true);
+        else HelpMenu.gameObject.SetActive(false);
+    }
 
+    private void RandBG()
+    {
+        ChozenSeed = UnityEngine.Random.Range(0, 5);
+        switch (ChozenSeed)
+        {
+            case 0:
+                this.GetComponent<Image>().sprite = Resources.Load<Sprite>("title0");
+                break;
+            case 1:
+                this.GetComponent<Image>().sprite = Resources.Load<Sprite>("title1");
+                break;
+            case 2:
+                this.GetComponent<Image>().sprite = Resources.Load<Sprite>("title2");
+                break;
+            case 3:
+                this.GetComponent<Image>().sprite = Resources.Load<Sprite>("title3");
+                break;
+            case 4:
+                this.GetComponent<Image>().sprite = Resources.Load<Sprite>("title4");
+                break;
+
+        }
+    }
 }

@@ -23,6 +23,7 @@ public class GM : MonoBehaviour
     [SerializeField] private GameObject FinalUI;
     [SerializeField] private List<AudioClip> Sountracks =new List<AudioClip>();
     [SerializeField] private Image TimeBar;
+    [SerializeField] private GameObject ShaderEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -141,6 +142,7 @@ public class GM : MonoBehaviour
             TimeNormal();
             return;
         }
+        ShaderEffect.gameObject.SetActive(true);
         ReverseTimer -= Time.fixedDeltaTime;
         TimeBar.fillAmount = ReverseTimer / 10.0f;
         if(!this.GetComponent<AudioSource>().isPlaying)
@@ -153,6 +155,7 @@ public class GM : MonoBehaviour
     }
     private void TimeNormal()
     {
+        ShaderEffect.gameObject.SetActive(false);
         if (this.GetComponent<AudioSource>().isPlaying)
         {
             this.GetComponent<AudioSource>().Stop();

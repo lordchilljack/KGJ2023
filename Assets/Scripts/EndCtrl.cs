@@ -11,6 +11,23 @@ public class EndCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        RandBG();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RandBG();
+        }
+    }
+    public void BackToMain()
+    {
+        SceneManager.LoadScene(1);
+    }
+    private void RandBG()
+    {
         int ChozenSeed = UnityEngine.Random.Range(0, 8);
         switch (ChozenSeed)
         {
@@ -39,15 +56,5 @@ public class EndCtrl : MonoBehaviour
                 Background.GetComponent<Image>().sprite = Resources.Load<Sprite>("GE(8)");
                 break;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void BackToMain()
-    {
-        SceneManager.LoadScene(1);
     }
 }
