@@ -173,7 +173,16 @@ public class GM : MonoBehaviour
     {
         if (PlayerMoney >= 1000)
         {
-            SceneManager.LoadScene(4);
+            if (OneOderPayment == 100)
+            {
+                SceneManager.LoadScene(4);
+            }
+            else
+            {
+                SceneManager.LoadScene(6);
+            }
+            
+
         }
         if (PlayerMoney < 0)
         {

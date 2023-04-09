@@ -121,8 +121,20 @@ public class CarSpawner : MonoBehaviour
         }
     }
     private void SpawnCarAt(int roadNum , float zTransform){
-        CarView carView = cars[UnityEngine.Random.Range(0 , cars.Count)];
+        int R = UnityEngine.Random.Range(0, cars.Count);
+        CarView carView = cars[R];
         carView = Instantiate(carView , carSpawnPoints[roadNum].position + new Vector3(0 , 0 , zTransform) , Quaternion.identity);
+        if (roadNum < 2)
+        {
+            if (R < 2)
+            {
+                carView.transform.GetChild(0).localScale = new Vector3(1, -1, 1);
+            }
+            else
+            {
+                carView.transform.GetChild(0).localScale = new Vector3(1, 1, -1);
+            }
+        }
         float speed;
         if(hardmode){
             speed = UnityEngine.Random.Range(10f , 20f);
