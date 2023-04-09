@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class HouseBehavior : MonoBehaviour
 {
-    public bool reverse = false;
+    public bool reverse = false , stop = false;
     [SerializeField] private List<Transform> houses = new List<Transform>();
     [SerializeField] private Transform spawnPoint , endPoint;
     private float houseSpeed = 0.2f;
     private void FixedUpdate() {
+        if(stop) return;
         for(int i = 0; i < houses.Count; i++){
             if(reverse){
                 houses[i].transform.position += Vector3.forward * houseSpeed;

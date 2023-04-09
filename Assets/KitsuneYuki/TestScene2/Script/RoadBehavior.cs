@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class RoadBehavior : MonoBehaviour
 {
-    public bool reverse = false;
+    public bool reverse = false , stop = false;
     [SerializeField] private List<Transform> roadBlocks = new List<Transform>();
     [SerializeField] private Transform spawnPoint , endPoint;
     private float roadSpeed = 0.2f;
     private void FixedUpdate() {
+        if(stop) return;
         for(int i = 0; i < roadBlocks.Count; i++){
             if(reverse){
                 roadBlocks[i].position += Vector3.forward * roadSpeed;
