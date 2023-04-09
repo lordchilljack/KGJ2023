@@ -8,8 +8,10 @@ public class CheckPoint : MonoBehaviour
     public event Action<bool> CarPassEvent;
     private void OnTriggerEnter(Collider other) {
         CarView carView = other.GetComponent<CarView>();
-        if(carView != null){
-            CarPassEvent(carView.reverse);
+        if(carView == null) return;
+        if(!carView.passed){
+            carView.passed = true;
+            CarPassEvent(false);
         }
     }
 }

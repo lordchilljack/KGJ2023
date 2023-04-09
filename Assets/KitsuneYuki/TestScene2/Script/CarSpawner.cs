@@ -15,18 +15,7 @@ public class CarSpawner : MonoBehaviour
     private int levelLength = 30 , carPassCount = 0;
     private float carDistance = 10f;
     private void Awake() {
-        checkPoint.CarPassEvent += (rev) => {
-            if(rev){
-                carPassCount--;
-            }
-            else{
-                carPassCount++;
-            }
-            if(carPassCount == carsOnRoad.Count){
-                //完成一單
-                GameFinishEvent();
-            }
-        };
+        checkPoint.CarPassEvent += CheckMethod;
         Init();
     }
     private void FixedUpdate() {
@@ -44,6 +33,18 @@ public class CarSpawner : MonoBehaviour
             Destroy(carsOnRoad[i].gameObject);
         }
         carsOnRoad.Clear();
+    }
+    private void CheckMethod(bool rev){
+        if(rev){
+            carPassCount--;
+        }
+        else{
+            carPassCount++;
+        }
+        if(carPassCount == carsOnRoad.Count){
+            //完成一單
+            GameFinishEvent();
+        }
     }
     private List<RoadId> GenerateLevelLayout(){
         List<RoadId> roadLayout = new List<RoadId>();

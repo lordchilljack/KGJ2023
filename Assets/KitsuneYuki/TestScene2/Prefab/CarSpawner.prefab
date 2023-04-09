@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4103d4accbbad742a2aa542dedd6e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frontCheckpoint: 0
 --- !u!1 &9218001659224980292
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,15 +202,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reverse: 0
-  hardmode: 1
+  hardmode: 0
   carSpawnPoints:
   - {fileID: 9218001659224980293}
   - {fileID: 9218001659233688436}
   - {fileID: 9218001659677596435}
   - {fileID: 9218001660733458131}
   cars:
-  - {fileID: 4843914498205256206, guid: 2bae9f0a5aa62b4469780766936b035c, type: 3}
+  - {fileID: 1406403111680336801, guid: d7c69672d5a7ab3469a6e315330171a5, type: 3}
+  - {fileID: 681236772511214929, guid: fe6d72e82fb9fbb49b5996b2371228f6, type: 3}
+  - {fileID: 9184419454660507907, guid: ff1656bdc93cb68448412b366eabf43c, type: 3}
+  - {fileID: 3776875688175371578, guid: 67d30bf479dc1b1498c6f26093c6cf95, type: 3}
   checkPoint: {fileID: 1107402867}
+  checkPoint2: {fileID: 0}
 --- !u!1 &9218001660733458130
 GameObject:
   m_ObjectHideFlags: 0

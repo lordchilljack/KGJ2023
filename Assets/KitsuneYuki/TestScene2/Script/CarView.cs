@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CarView : MonoBehaviour
 {
-    [HideInInspector] public bool reverse = false;
+    [HideInInspector] public bool reverse = false , passed = false;
     private bool hardmode = false;
     private int index = 0 , levelLength;
     private float carSpeed = 10f;
