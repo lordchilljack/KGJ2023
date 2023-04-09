@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
             //時光倒流
             ReverseTime();
         }
-        else if(Input.GetKeyUp(KeyCode.Mouse0)){
+        else{
             NormalTime();
         }
     }
